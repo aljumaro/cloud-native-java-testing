@@ -1,4 +1,4 @@
-package com.aljumaro.test.cloudnativejavatesting;
+package com.aljumaro.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

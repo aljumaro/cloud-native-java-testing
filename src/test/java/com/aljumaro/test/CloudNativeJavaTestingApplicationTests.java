@@ -1,4 +1,4 @@
-package com.aljumaro.test.cloudnativejavatesting;
+package com.aljumaro.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
