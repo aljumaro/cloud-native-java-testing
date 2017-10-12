@@ -13,7 +13,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.aljumaro.test.repository.Account;
-import com.aljumaro.test.repository.AccountNumber;
 import com.aljumaro.test.repository.AccountRepository;
 
 @RunWith(SpringRunner.class)
@@ -34,8 +33,8 @@ public class AccountServiceTest {
 
 	@Test
 	public void getUserAccountsGetSingleAccount() {
-		given(accountRepository.findAccountsByUsername("user")).willReturn(
-				Collections.singletonList(new Account("user", AccountNumber.builder().number(123456789).build())));
+		given(accountRepository.findByName("user"))
+				.willReturn(Collections.singletonList(new Account(0, "user", 123456789)));
 
 		given(userRepository.getAuthenticatedUser()).willReturn(User.builder().name("user").build());
 
@@ -45,7 +44,6 @@ public class AccountServiceTest {
 		// then
 		assertThat(accounts).as("Size must be one").size().isEqualTo(1);
 		assertThat(accounts.get(0).getName()).as("User must be same").isEqualTo("user");
-		assertThat(accounts.get(0).getAccountNumber()).as("Account number must be same")
-				.isEqualTo(AccountNumber.builder().number(123456789).build());
+		assertThat(accounts.get(0).getAccountNumber()).as("Account number must be same").isEqualTo(123456789);
 	}
 }

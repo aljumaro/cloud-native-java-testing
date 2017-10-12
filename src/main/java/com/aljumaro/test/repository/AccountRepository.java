@@ -2,11 +2,10 @@ package com.aljumaro.test.repository;
 
 import java.util.List;
 
-public class AccountRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
-	public List<Account> findAccountsByUsername(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public interface AccountRepository extends JpaRepository<Account, Integer> {
+
+	public List<Account> findByName(String name);
 
 }

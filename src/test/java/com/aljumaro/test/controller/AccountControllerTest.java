@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.aljumaro.test.repository.Account;
-import com.aljumaro.test.repository.AccountNumber;
 import com.aljumaro.test.service.AccountService;
 
 @RunWith(SpringRunner.class)
@@ -34,9 +33,8 @@ public class AccountControllerTest {
 	@Test
 	public void getUserAccountShouldReturnAccounts() throws Exception {
 		// given
-		String content = "[{\"name\":\"user\",\"accountNumber\":{\"number\":123456}}]";
-		given(accountService.findAccounts()).willReturn(
-				Collections.singletonList(new Account("user", AccountNumber.builder().number(123456).build())));
+		String content = "[{\"id\":0,\"name\":\"user\",\"accountNumber\":123456}]";
+		given(accountService.findAccounts()).willReturn(Collections.singletonList(new Account(0, "user", 123456)));
 
 		// when
 		ResultActions result = mvc.perform(get("/v1/accounts").accept(MediaType.APPLICATION_JSON));

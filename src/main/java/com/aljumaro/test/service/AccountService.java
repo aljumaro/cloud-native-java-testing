@@ -4,9 +4,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.aljumaro.test.repository.Account;
 import com.aljumaro.test.repository.AccountRepository;
 
+@Service
 public class AccountService {
 
 	private AccountRepository accountRepository;
@@ -21,7 +24,7 @@ public class AccountService {
 		//@formatter:off
 		
 		return Optional.ofNullable(userRepository.getAuthenticatedUser())
-				.map(u -> accountRepository.findAccountsByUsername(u.getName()))
+				.map(u -> accountRepository.findByName(u.getName()))
 				.orElse(Collections.emptyList());
 		
 		//@formatter:on
